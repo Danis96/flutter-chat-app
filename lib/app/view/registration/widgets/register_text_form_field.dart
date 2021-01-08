@@ -16,6 +16,19 @@ Widget emailRegisterTextFormField({
   );
 }
 
+Widget nameRegisterTextFormField({
+  @required TextEditingController controller,
+  bool obscureText = false,
+}) {
+  return commonTextFormField(
+    controller: controller,
+    obscureText: obscureText,
+    icon: commonEmptyContainer(),
+    hintText: 'Full Name',
+    hintColor: ColorHelper.walletWhite.color,
+  );
+}
+
 Widget passwordRegisterTextFormField({
   @required TextEditingController controller,
   bool obscureText = false,

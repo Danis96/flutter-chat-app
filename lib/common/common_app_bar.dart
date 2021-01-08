@@ -6,18 +6,20 @@ PreferredSizeWidget commonAppBar({
   Color backgroundColor,
   Widget leading,
   Widget action,
+  bool centerTitle = true,
   @required String title,
 }) {
   return AppBar(
     backgroundColor: backgroundColor ?? ColorHelper.walletWhite.color,
     elevation: elevation ?? 1,
-    centerTitle: true,
+    centerTitle: centerTitle,
     leading: leading,
     title: Text(
       title,
       style: TextStyle(
         color: ColorHelper.walletWhite.color,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w600,
+        fontSize: 23,
       ),
     ),
     actions: <Widget>[

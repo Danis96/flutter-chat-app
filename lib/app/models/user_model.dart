@@ -1,21 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 class UserModel {
   UserModel({
     this.email,
     this.name,
     this.uid,
+    this.firestoreID,
   });
 
-  factory UserModel.fromDocument(UserCredential userCredential) {
+  factory UserModel.fromDocument(Map<String, dynamic> doc) {
     return UserModel(
-      email: userCredential.user.email ?? '',
-      name: userCredential.user.displayName ?? '',
-      uid: userCredential.user.uid ?? '',
+      email: doc['email'] as String ?? '',
+      uid: doc['userID'] as String ?? '',
+      name: doc['name'] as String ?? '',
     );
   }
 
   String email;
   String name;
   String uid;
+  String firestoreID;
 }

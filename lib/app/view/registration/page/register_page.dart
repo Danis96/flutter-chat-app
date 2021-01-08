@@ -14,6 +14,7 @@ import '../../../utils/color_helper.dart';
 
 class RegistrationPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConfirmController =
       TextEditingController();
@@ -42,6 +43,11 @@ class RegistrationPage extends StatelessWidget {
                       Container(
                         child: emailRegisterTextFormField(
                           controller: _emailController,
+                        ),
+                      ),
+                      Container(
+                        child: nameRegisterTextFormField(
+                          controller: _nameController,
                         ),
                       ),
                       Container(
@@ -99,6 +105,7 @@ class RegistrationPage extends StatelessWidget {
           .registerUser(
         email: _emailController.text,
         password: _passwordConfirmController.text,
+        name: _nameController.text,
       )
           .then(
         (_) {

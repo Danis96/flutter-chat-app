@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet/app/utils/navigation_animations.dart';
 import 'package:wallet/app/view/home/page/home_page.dart';
 import 'package:wallet/app/view/login/page/login_page.dart';
+import 'package:wallet/app/view/profile/page/profile_page.dart';
 import 'package:wallet/app/view/registration/page/register_page.dart';
 import 'package:wallet/routing/routes.dart';
 
@@ -18,6 +19,8 @@ class RouteGenerator {
         return SlideAnimationTween(widget: RegistrationPage());
       case Home:
         return SlideAnimationTween(widget: HomePage());
+      case Profile:
+        return SlideAnimationTween(widget: ProfilePage());
       default:
         return _errorRoute();
     }
