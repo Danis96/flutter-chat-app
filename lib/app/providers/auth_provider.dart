@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:wallet/app/models/user_model.dart';
+import 'package:wallet/app/utils/shared_preffs.dart';
 
 class AuthProvider extends ChangeNotifier {
   AuthProvider() {

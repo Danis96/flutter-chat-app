@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet/app/providers/auth_provider.dart';
+import 'package:wallet/app/utils/shared_preffs.dart';
 import 'package:wallet/app/view/login/widgets/login_button.dart';
 import 'package:wallet/app/view/login/widgets/login_logo_headline.dart';
 import 'package:wallet/app/view/login/widgets/login_tappable.dart';
@@ -106,6 +107,7 @@ class LoginPage extends StatelessWidget {
               buttonFunction: () => Navigator.of(context).pop(),
             );
           } else {
+            SharedPreffs().writeEmailInShared(_emailController.text);
             Navigator.of(context).pop();
             Navigator.of(context).pushNamedAndRemoveUntil(
               Home,
