@@ -8,7 +8,7 @@ Widget loginTappable({Function(int) onPressed}) {
     links: 'Create a new account',
     onPressed: onPressed,
     linkStyle: TextStyle(
-      color: ColorHelper.walletPurple.color,
+      color: ColorHelper.chatRed.color,
     ),
   );
 }

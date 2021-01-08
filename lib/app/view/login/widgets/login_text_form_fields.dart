@@ -12,7 +12,7 @@ Widget emailTextFormField({
     obscureText: obscureText,
     icon: commonEmptyContainer(),
     hintText: 'Email',
-    hintColor: ColorHelper.walletBlack.color,
+    hintColor: ColorHelper.walletWhite.color,
   );
 }
 
@@ -25,6 +25,6 @@ Widget passwordTextFormField({
     controller: controller,
     icon: commonEmptyContainer(),
     hintText: 'Password',
-    hintColor: ColorHelper.walletBlack.color,
+    hintColor: ColorHelper.walletWhite.color,
   );
 }

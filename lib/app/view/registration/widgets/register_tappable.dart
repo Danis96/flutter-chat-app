@@ -8,7 +8,7 @@ Widget registerTappable({Function(int) onPressed}) {
     links: 'Login',
     onPressed: onPressed,
     linkStyle: TextStyle(
-      color: ColorHelper.walletBlack.color,
+      color: ColorHelper.chatRed.color,
     ),
   );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wallet/app/utils/color_helper.dart';
 
+import '../app/utils/color_helper.dart';
+
 Widget commonTextFormField({
   TextEditingController controller,
   bool obscureText = false,
@@ -13,13 +15,16 @@ Widget commonTextFormField({
   return TextFormField(
     controller: controller,
     obscureText: obscureText,
-    cursorColor: ColorHelper.walletBlack.color,
+    cursorColor: ColorHelper.chatRed.color,
     validator: (String input) {
       if (input.isEmpty) {
         return 'Field cannot be empty!!!';
       }
       return null;
     },
+    style: TextStyle(
+      color: ColorHelper.walletWhite.color,
+    ),
     maxLines: maxLines,
     minLines: minLines,
     decoration: InputDecoration(
@@ -31,7 +36,7 @@ Widget commonTextFormField({
         fontWeight: FontWeight.w300,
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorHelper.walletBlack.color),
+        borderSide: BorderSide(color: ColorHelper.walletGrey.color),
       ),
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(
@@ -83,7 +88,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
     return TextFormField(
       controller: widget.controller,
       obscureText: _showPassword,
-      cursorColor: ColorHelper.walletBlack.color,
+      cursorColor: ColorHelper.chatRed.color,
       validator: (String input) {
         if (input.isEmpty) {
           return 'Field cannot be empty!!!';
@@ -92,10 +97,13 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
         }
         return null;
       },
+      style: TextStyle(
+        color: ColorHelper.walletWhite.color,
+      ),
       decoration: InputDecoration(
         helperText: '',
         suffixIcon: IconButton(
-          color: ColorHelper.walletBlack.color,
+          color: ColorHelper.walletWhite.color,
           icon: Icon(_showPassword ? Icons.visibility : Icons.visibility_off),
           onPressed: () => setState(() {
             _showPassword = !_showPassword;
@@ -108,7 +116,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: ColorHelper.walletBlack.color,
+            color: ColorHelper.walletGrey.color,
           ),
         ),
         enabledBorder: const OutlineInputBorder(
@@ -162,11 +170,14 @@ class _PasswordConfirmTextFormFieldState
     return TextFormField(
       controller: widget.controller,
       obscureText: _showPassword,
-      cursorColor: ColorHelper.walletBlack.color,
+      cursorColor: ColorHelper.chatRed.color,
+      style: TextStyle(
+        color: ColorHelper.walletWhite.color,
+      ),
       decoration: InputDecoration(
         helperText: '',
         suffixIcon: IconButton(
-          color: ColorHelper.walletBlack.color,
+          color: ColorHelper.walletWhite.color,
           icon: Icon(_showPassword ? Icons.visibility : Icons.visibility_off),
           onPressed: () => setState(() {
             _showPassword = !_showPassword;
@@ -179,7 +190,7 @@ class _PasswordConfirmTextFormFieldState
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: ColorHelper.walletBlack.color,
+            color: ColorHelper.walletGrey.color,
           ),
         ),
         enabledBorder: const OutlineInputBorder(

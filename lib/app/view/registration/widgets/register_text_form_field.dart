@@ -12,7 +12,7 @@ Widget emailRegisterTextFormField({
     obscureText: obscureText,
     icon: commonEmptyContainer(),
     hintText: 'Email',
-    hintColor: ColorHelper.walletBlack.color,
+    hintColor: ColorHelper.walletWhite.color,
   );
 }
 
@@ -25,7 +25,7 @@ Widget passwordRegisterTextFormField({
     controller: controller,
     icon: commonEmptyContainer(),
     hintText: 'Password',
-    hintColor: ColorHelper.walletBlack.color,
+    hintColor: ColorHelper.walletWhite.color,
   );
 }
 
@@ -38,6 +38,6 @@ Widget confirmPasswordRegisterTextFormField({
     controller: controller,
     icon: commonEmptyContainer(),
     hintText: 'Confirm Password',
-    hintColor: ColorHelper.walletBlack.color,
+    hintColor: ColorHelper.walletWhite.color,
   );
 }

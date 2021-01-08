@@ -9,6 +9,8 @@ import 'package:wallet/common/common_alert_dialog.dart';
 import 'package:wallet/common/common_loader.dart';
 import 'package:wallet/routing/routes.dart';
 
+import '../../../utils/color_helper.dart';
+
 class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
 
@@ -21,6 +23,7 @@ class LoginPage extends StatelessWidget {
     final AuthProvider _authProvider =
         Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
+      backgroundColor: ColorHelper.chatBlack.color,
       body: WillPopScope(
         onWillPop: () => null,
         child: GestureDetector(

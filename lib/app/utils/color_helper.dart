@@ -9,6 +9,8 @@ enum ColorHelper {
   walletGreenLight,
   walletGrey,
   walletBlue,
+  chatRed,
+  chatBlack,
 }
 
 extension ColorExtension on ColorHelper {
@@ -26,6 +28,10 @@ extension ColorExtension on ColorHelper {
         return const Color.fromRGBO(176, 176, 183, 1.0);
       case ColorHelper.walletBlue:
         return const Color.fromRGBO(45, 103, 230, 1.0);
+      case ColorHelper.chatRed:
+        return const Color.fromRGBO(242, 75, 77, 1.0);
+      case ColorHelper.chatBlack:
+        return const Color.fromRGBO(26, 29, 36, 1.0);
     }
     return Colors.white;
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet/app/utils/color_helper.dart';
 
+import '../../../utils/color_helper.dart';
 
 Widget logoHeadline() {
   return Column(
@@ -8,9 +9,10 @@ Widget logoHeadline() {
       Container(
         margin: const EdgeInsets.only(top: 70.0),
         child: Image.asset(
-          'assets/wallet.png',
+          'assets/chat-bubble.png',
           width: 100,
           height: 100,
+          color: ColorHelper.chatRed.color,
         ),
       ),
       Container(
@@ -18,7 +20,7 @@ Widget logoHeadline() {
         child: Text(
           'Welcome Back',
           style: TextStyle(
-            color: ColorHelper.walletBlack.color,
+            color: ColorHelper.chatRed.color,
             fontWeight: FontWeight.w700,
             fontSize: 32,
           ),

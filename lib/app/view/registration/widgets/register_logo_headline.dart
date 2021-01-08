@@ -9,7 +9,7 @@ Widget registerLogoHeadline() {
         child: Text(
           'Create Account',
           style: TextStyle(
-            color: ColorHelper.walletPurple.color,
+            color: ColorHelper.chatRed.color,
             fontWeight: FontWeight.w700,
             fontSize: 32,
           ),

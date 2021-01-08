@@ -16,7 +16,7 @@ Widget commonButton({
     child: RaisedButton(
       onPressed: () => onPressed(),
       color: isFullButton(buttonType)
-          ? ColorHelper.walletPurple.color
+          ? ColorHelper.chatRed.color
           : ColorHelper.walletWhite.color,
       child: isFullButton(buttonType)
           ? Text(

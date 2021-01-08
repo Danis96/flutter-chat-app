@@ -6,8 +6,14 @@ class TappableText extends StatelessWidget {
     @required this.text,
     @required this.links,
     this.onPressed,
-    this.defaultStyle = const TextStyle(color: Color.fromRGBO(59, 72, 86, 1.0), fontSize: 16, fontWeight: FontWeight.w400),
-    this.linkStyle = const TextStyle(color: Color.fromRGBO(81, 172, 252, 1.0), fontSize: 16, fontWeight: FontWeight.w500),
+    this.defaultStyle = const TextStyle(
+        color: Color.fromRGBO(176, 176, 183, 1.0),
+        fontSize: 16,
+        fontWeight: FontWeight.w400),
+    this.linkStyle = const TextStyle(
+        color: Color.fromRGBO(81, 172, 252, 1.0),
+        fontSize: 16,
+        fontWeight: FontWeight.w500),
     this.textAlign = TextAlign.center,
   });
 
