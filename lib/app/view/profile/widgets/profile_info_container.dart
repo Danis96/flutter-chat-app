@@ -19,6 +19,7 @@ Widget infoContainer({String headText, String text}) {
           ),
         ),
         Container(
+          padding: const EdgeInsets.only(top: 8.0),
           child: Text(
             text ?? '',
             style: TextStyle(

@@ -23,27 +23,6 @@ class AuthProvider extends ChangeNotifier {
   String get loginErrorMsg => _loginErrorMsg;
   String _registerErrorMsg;
   String get registerErrorMsg => _registerErrorMsg;
-  String _userName;
-  String get userName => _userName;
-  String _userEmail;
-  String get userEmail => _userEmail;
-
-  Future<void> readPreffs() async {
-    _userName = await SharedPreffs().readNameFromShared() ?? _userModel.name;
-    _userEmail = await SharedPreffs().readEmailFromShared() ?? _userModel.email;
-    notifyListeners();
-  }
-
-  Future<void> getUserByID() async {
-    try {
-      final String id = await SharedPreffs().readDocIdFromShared();
-      final DocumentSnapshot doc = await firestore.doc(id).get();
-      _userModel = UserModel.fromDocument(doc.data());
-      notifyListeners();
-    } catch (e) {
-      print(e);
-    }
-  }
 
   Future<void> registerUser({
     @required String email,
@@ -57,13 +36,10 @@ class AuthProvider extends ChangeNotifier {
         password: password,
       );
       _userModel.name = name ?? '';
-      await SharedPreffs().writeNameInShared(name);
-      print('REGISTER USER:');
-      print('TOKEN: ${_userModel.uid}');
-      print('USER: ${_userModel.email}');
+      _userModel.email = email ?? '';
       await addUserToFirestore(
         name: name,
-        email: _userModel.email,
+        email: email,
         uid: _userModel.uid,
       );
       notifyListeners();
@@ -87,6 +63,14 @@ class AuthProvider extends ChangeNotifier {
       print('LOGIN USER:');
       print('TOKEN: ${_userModel.uid}');
       print('USER: ${_userModel.email}');
+      await firestore.get().then((QuerySnapshot value) {
+        // ignore: avoid_function_literals_in_foreach_calls
+        value.docs.forEach((QueryDocumentSnapshot e) {
+          if (e.data()['email'] == email) {
+            _userModel = UserModel.fromDocument(e.data());
+          }
+        });
+      });
       notifyListeners();
     } catch (e) {
       print(e);
@@ -109,7 +93,6 @@ class AuthProvider extends ChangeNotifier {
       };
       final DocumentReference doc = await firestore.add(user);
       _userModel.firestoreID = doc.id;
-      await SharedPreffs().writeDocIdInShared(doc.id);
       Map<String, dynamic> userFinal = <String, dynamic>{
         'name': name ?? '',
         'email': email ?? '',

@@ -16,8 +16,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
-    Provider.of<AuthProvider>(context, listen: false).readPreffs();
-    Provider.of<AuthProvider>(context, listen: false).getUserByID();
     super.initState();
   }
 
@@ -46,8 +44,9 @@ class _ProfilePageState extends State<ProfilePage> {
           physics: const NeverScrollableScrollPhysics(),
           children: <Widget>[
             profileImageContainer(),
-            infoContainer(headText: 'Name', text: authProvider.userName),
-            infoContainer(headText: 'Email', text: authProvider.userEmail),
+            infoContainer(headText: 'Name', text: authProvider.userModel.name),
+            infoContainer(
+                headText: 'Email', text: authProvider.userModel.email),
             Container(
               margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 7),
               child: Divider(

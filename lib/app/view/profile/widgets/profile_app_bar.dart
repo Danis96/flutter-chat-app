@@ -9,7 +9,7 @@ PreferredSizeWidget profileAppBar({
 }) {
   return commonAppBar(
     backgroundColor: ColorHelper.chatBlack.color,
-    title: 'Hi ${userModel.userName} ',
+    title: 'Hi ${userModel.userModel.name} ',
     action: IconButton(
       icon: Icon(Icons.edit),
       onPressed: () => print('Go to edit profile'),
