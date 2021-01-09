@@ -47,7 +47,8 @@ class ProfilePage extends StatelessWidget {
             ),
             infoContainer(
               headText: 'You are currently registered with',
-              text: authProvider.userModel.email,
+              // text: authProvider.userModel.email,
+              text: authProvider.userModel.lastMessageTime,
             ),
             Container(
               margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 8),

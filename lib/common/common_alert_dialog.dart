@@ -89,51 +89,52 @@ Future<bool> commonMyAlert({
     style: type == TypeALert.error ? alertStyleError : alertStyleInfo,
     title: title,
     // ignore: always_specify_types
-    buttons: [
-      if (type == TypeALert.error)
-        DialogButton(
-          child: const Text(
-            'OK',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+    buttons: type == TypeALert.error
+        ? [
+            DialogButton(
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: () => buttonFunction(),
+              color: type == TypeALert.error
+                  ? ColorHelper.chatRed.color
+                  : ColorHelper.walletGreenLight.color,
+              radius: BorderRadius.circular(8.0),
+            )
+          ]
+        : [
+            DialogButton(
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: () => buttonFunctionCancel(),
+              color: type == TypeALert.error
+                  ? ColorHelper.chatRed.color
+                  : ColorHelper.walletGreenLight.color,
+              radius: BorderRadius.circular(8.0),
             ),
-          ),
-          onPressed: () => buttonFunction(),
-          color: type == TypeALert.error
-              ? ColorHelper.chatRed.color
-              : ColorHelper.walletGreenLight.color,
-          radius: BorderRadius.circular(8.0),
-        )
-      else
-        DialogButton(
-          child: const Text(
-            'Cancel',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+            DialogButton(
+              child: const Text(
+                'Logout',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: () => buttonFunction(),
+              color: type == TypeALert.error
+                  ? ColorHelper.chatRed.color
+                  : ColorHelper.walletGreenLight.color,
+              radius: BorderRadius.circular(8.0),
             ),
-          ),
-          onPressed: () => buttonFunctionCancel(),
-          color: type == TypeALert.error
-              ? ColorHelper.chatRed.color
-              : ColorHelper.walletGreenLight.color,
-          radius: BorderRadius.circular(8.0),
-        ),
-      DialogButton(
-        child: const Text(
-          'Logout',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
-        ),
-        onPressed: () => buttonFunction(),
-        color: type == TypeALert.error
-            ? ColorHelper.chatRed.color
-            : ColorHelper.walletGreenLight.color,
-        radius: BorderRadius.circular(8.0),
-      ),
-    ],
+          ],
   ).show();
 }

@@ -19,6 +19,9 @@ class AuthProvider extends ChangeNotifier {
   UserModel _userModel = UserModel();
   UserModel get userModel => _userModel;
 
+  List<UserModel> _usersAll = <UserModel>[];
+  List<UserModel> get usersAll => _usersAll;
+
   String _loginErrorMsg;
   String get loginErrorMsg => _loginErrorMsg;
   String _registerErrorMsg;
@@ -27,6 +30,14 @@ class AuthProvider extends ChangeNotifier {
   String get addUserErrorMsg => _addUserErrorMsg;
   String _updateUserErrorMsg;
   String get updateUserErrorMsg => _updateUserErrorMsg;
+
+  Future<void> fetchUsers() async {
+    try {
+      QuerySnapshot snaphsots = await firestore.get();
+    } catch (e) {
+      print(e);
+    }
+  }
 
   Future<void> registerUser({
     @required String email,
@@ -85,22 +96,23 @@ class AuthProvider extends ChangeNotifier {
   }) async {
     try {
       _addUserErrorMsg = null;
-      Map<String, dynamic> user = <String, dynamic>{
-        'name': name ?? '',
-        'email': email ?? '',
-        'userToken': uid ?? '',
-        'userID': '',
-      };
-      final DocumentReference doc = await firestore.add(user);
+      final UserModel user = UserModel(
+        name: name,
+        email: email,
+        uid: uid,
+        firestoreID: '',
+      );
+      final DocumentReference doc = await firestore.add(user.toJson());
       _userModel.firestoreID = doc.id;
-      Map<String, dynamic> userFinal = <String, dynamic>{
-        'name': name ?? '',
-        'email': email ?? '',
-        'userToken': uid ?? '',
-        'userID': doc.id ?? '',
-      };
-      await firestore.doc(doc.id).update(userFinal);
-      _userModel = UserModel.fromDocument(user);
+      final UserModel userFinal = UserModel(
+        name: name,
+        email: email,
+        uid: uid,
+        firestoreID: doc.id,
+        lastMsgTime: Timestamp.now(),
+      );
+      await firestore.doc(doc.id).update(userFinal.toJson());
+      _userModel = UserModel.fromDocument(userFinal.toJson());
     } catch (e) {
       print(e);
       final List<String> errors = e.toString().split(']');
@@ -115,14 +127,15 @@ class AuthProvider extends ChangeNotifier {
   }) async {
     try {
       _updateUserErrorMsg = null;
-      Map<String, dynamic> user = <String, dynamic>{
-        'email': email ?? '',
-        'name': name ?? '',
-        'userID': userID ?? '',
-        'userToken': _userModel.uid ?? '',
-      };
-      await firestore.doc(userID).update(user);
-      _userModel = UserModel.fromDocument(user);
+      final UserModel user = UserModel(
+        name: name,
+        email: email,
+        uid: userID,
+        firestoreID: userID,
+        lastMsgTime: Timestamp.now(),
+      );
+      await firestore.doc(userID).update(user.toJson());
+      _userModel = UserModel.fromDocument(user.toJson());
       notifyListeners();
     } catch (e) {
       print(e);
