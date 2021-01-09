@@ -7,18 +7,9 @@ import 'package:wallet/app/view/profile/widgets/profile_app_bar.dart';
 import 'package:wallet/app/view/profile/widgets/profile_buttons.dart';
 import 'package:wallet/app/view/profile/widgets/profile_image_container.dart';
 import 'package:wallet/app/view/profile/widgets/profile_info_container.dart';
+import 'package:wallet/common/common_alert_dialog.dart';
 
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -32,23 +23,45 @@ class _ProfilePageState extends State<ProfilePage> {
         userModel: authProvider,
       ),
       bottomNavigationBar: Container(
-          margin: EdgeInsets.only(bottom: SizeConfig.blockSizeVertical * 6),
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: profileLogoutButton(
-            authProvider: authProvider,
+        margin: EdgeInsets.only(bottom: SizeConfig.blockSizeVertical * 6),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: profileLogoutButton(
+          onPressed: () => commonMyAlert(
             context: context,
-          )),
+            title: 'Are you sure you want to logout from Chats?',
+            buttonFunction: () => authProvider.logoutUser(context),
+            type: TypeALert.info,
+            buttonFunctionCancel: () => Navigator.of(context).pop(),
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: ListView(
           physics: const NeverScrollableScrollPhysics(),
           children: <Widget>[
             profileImageContainer(),
-            infoContainer(headText: 'Name', text: authProvider.userModel.name),
             infoContainer(
-                headText: 'Email', text: authProvider.userModel.email),
+              headText: 'Hello',
+              text: authProvider.userModel.name,
+            ),
+            infoContainer(
+              headText: 'You are currently registered with',
+              text: authProvider.userModel.email,
+            ),
             Container(
-              margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 7),
+              margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 8),
+              child: Text(
+                'You can edit your profile by clicking on edit icon in the app bar',
+                style: TextStyle(
+                  color: ColorHelper.walletWhite.color,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 2),
               child: Divider(
                 color: ColorHelper.chatRed.color,
               ),

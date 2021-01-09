@@ -11,6 +11,7 @@ Widget commonTextFormField({
   Color hintColor,
   int maxLines = 1,
   int minLines = 1,
+  bool readOnly = false,
 }) {
   return TextFormField(
     controller: controller,
@@ -27,6 +28,7 @@ Widget commonTextFormField({
     ),
     maxLines: maxLines,
     minLines: minLines,
+    readOnly: readOnly,
     decoration: InputDecoration(
       helperText: '',
       suffixIcon: icon,

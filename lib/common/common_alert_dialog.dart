@@ -37,7 +37,7 @@ Future<void> showMyDialog({
   );
 }
 
-AlertStyle alertStyle = AlertStyle(
+AlertStyle alertStyleError = AlertStyle(
   animationType: AnimationType.fromTop,
   isCloseButton: false,
   isOverlayTapDismiss: false,
@@ -54,28 +54,84 @@ AlertStyle alertStyle = AlertStyle(
   alertAlignment: Alignment.center,
 );
 
+AlertStyle alertStyleInfo = AlertStyle(
+  animationType: AnimationType.grow,
+  isCloseButton: false,
+  isOverlayTapDismiss: false,
+  animationDuration: const Duration(milliseconds: 500),
+  alertBorder: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(8.0),
+    side: const BorderSide(
+      color: Colors.grey,
+    ),
+  ),
+  titleStyle: TextStyle(
+    color: ColorHelper.chatBlack.color,
+  ),
+  alertAlignment: Alignment.center,
+);
+
+enum TypeALert {
+  error,
+  success,
+  info,
+}
+
 Future<bool> commonMyAlert({
   @required BuildContext context,
   @required String title,
   @required Function buttonFunction,
+  @required Function buttonFunctionCancel,
+  TypeALert type = TypeALert.error,
 }) {
   return Alert(
     context: context,
-    style: alertStyle,
-    // type: AlertType.,
+    style: type == TypeALert.error ? alertStyleError : alertStyleInfo,
     title: title,
     // ignore: always_specify_types
     buttons: [
+      if (type == TypeALert.error)
+        DialogButton(
+          child: const Text(
+            'OK',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          onPressed: () => buttonFunction(),
+          color: type == TypeALert.error
+              ? ColorHelper.chatRed.color
+              : ColorHelper.walletGreenLight.color,
+          radius: BorderRadius.circular(8.0),
+        )
+      else
+        DialogButton(
+          child: const Text(
+            'Cancel',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          onPressed: () => buttonFunctionCancel(),
+          color: type == TypeALert.error
+              ? ColorHelper.chatRed.color
+              : ColorHelper.walletGreenLight.color,
+          radius: BorderRadius.circular(8.0),
+        ),
       DialogButton(
         child: const Text(
-          'OK',
+          'Logout',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
           ),
         ),
         onPressed: () => buttonFunction(),
-        color: ColorHelper.walletPurple.color,
+        color: type == TypeALert.error
+            ? ColorHelper.chatRed.color
+            : ColorHelper.walletGreenLight.color,
         radius: BorderRadius.circular(8.0),
       ),
     ],

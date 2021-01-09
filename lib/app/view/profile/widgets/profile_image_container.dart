@@ -15,7 +15,7 @@ Widget profileImageContainer() {
           child: CircleAvatar(
             radius: 60.0,
             backgroundColor: ColorHelper.chatRed.color,
-            backgroundImage: NetworkImage(
+            backgroundImage: const NetworkImage(
                 'https://i.pinimg.com/originals/36/43/e7/3643e7e8dab9b88b3972ee1c9f909dea.jpg'),
           ),
         ),

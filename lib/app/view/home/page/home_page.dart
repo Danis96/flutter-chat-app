@@ -17,10 +17,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  Widget build(BuildContext context) {
-    final AuthProvider authProvider =
-        Provider.of<AuthProvider>(context, listen: true);
+  void initState() {
+    _getInitialData();
+    super.initState();
+  }
 
+  Future<void> _getInitialData() async {
+    await SharedPreffs().readEmailFromShared().then(
+          (String email) => Provider.of<AuthProvider>(context, listen: false)
+              .getUserDataByEmail(email: email, isLogin: false),
+        );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: ColorHelper.chatBlack.color,

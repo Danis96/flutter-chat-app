@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:wallet/app/providers/auth_provider.dart';
 import 'package:wallet/common/common_button.dart';
 
-Widget profileLogoutButton({
-  AuthProvider authProvider,
-  BuildContext context,
-}) {
+Widget profileLogoutButton({@required Function onPressed}) {
   return commonButton(
-      onPressed: () => authProvider.logoutUser(context), text: 'Logout');
+    onPressed: () => onPressed(),
+    text: 'Logout',
+  );
+}
+
+Widget updateProfileButton({
+  @required Function onPressed,
+}) {
+  return Container(
+    child: commonButton(
+      onPressed: () => onPressed(),
+      text: 'Update profile',
+    ),
+  );
 }
