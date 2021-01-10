@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wallet/app/models/user_model.dart';
 import 'package:wallet/app/utils/navigation_animations.dart';
+import 'package:wallet/app/view/chatroom/page/chatroom_page.dart';
 import 'package:wallet/app/view/home/page/home_page.dart';
 import 'package:wallet/app/view/login/page/login_page.dart';
 import 'package:wallet/app/view/profile/page/profile_page.dart';
@@ -24,6 +26,11 @@ class RouteGenerator {
         return SlideAnimationTween(widget: ProfilePage());
       case ProfileUpdate:
         return SlideAnimationTween(widget: ProfileUpdatePage());
+      case Chatroom:
+        return SlideAnimationTween(
+            widget: ChatroomPage(
+          user: settings.arguments as UserModel,
+        ));
       default:
         return _errorRoute();
     }

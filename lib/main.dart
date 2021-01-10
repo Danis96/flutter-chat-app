@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet/app/providers/auth_provider.dart';
 import 'package:wallet/app/providers/bottom_navigation_provider.dart';
+import 'package:wallet/app/providers/messages_provider.dart';
 import 'package:wallet/app/utils/shared_preffs.dart';
 
 import 'app/view/home/page/home_page.dart';
@@ -48,6 +49,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<BottomNavigationProvider>(
           create: (BuildContext context) => BottomNavigationProvider(),
+        ),
+        ChangeNotifierProvider<MessagesProvider>(
+          create: (BuildContext context) => MessagesProvider(),
         ),
       ],
       child: MaterialApp(

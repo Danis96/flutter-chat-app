@@ -218,3 +218,63 @@ class _PasswordConfirmTextFormFieldState
     );
   }
 }
+
+Widget chatTextFormField({
+  TextEditingController controller,
+  bool obscureText = false,
+  Widget icon,
+  String hintText,
+  Color hintColor,
+  int maxLines = 1,
+  int minLines = 1,
+  bool readOnly = false,
+}) {
+  return TextFormField(
+    controller: controller,
+    obscureText: obscureText,
+    cursorColor: ColorHelper.chatRed.color,
+    validator: (String input) {
+      if (input.isEmpty) {
+        return 'Field cannot be empty!!!';
+      }
+      return null;
+    },
+    style: TextStyle(
+      color: ColorHelper.walletWhite.color,
+    ),
+    maxLines: maxLines,
+    minLines: minLines,
+    readOnly: readOnly,
+    decoration: InputDecoration(
+      helperText: '',
+      suffixIcon: icon,
+      hintText: hintText,
+      hintStyle: TextStyle(
+        color: hintColor,
+        fontWeight: FontWeight.w300,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorHelper.walletGrey.color),
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color.fromRGBO(238, 238, 238, 1.0),
+        ),
+      ),
+      errorStyle: const TextStyle(
+        fontSize: 14.0,
+        fontWeight: FontWeight.w300,
+      ),
+      focusedErrorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color.fromRGBO(236, 98, 128, 1.0),
+        ),
+      ),
+      errorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color.fromRGBO(236, 98, 128, 1.0),
+        ),
+      ),
+    ),
+  );
+}

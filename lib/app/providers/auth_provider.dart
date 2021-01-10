@@ -33,7 +33,13 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> fetchUsers() async {
     try {
+      _usersAll = <UserModel>[];
       QuerySnapshot snaphsots = await firestore.get();
+      // ignore: avoid_function_literals_in_foreach_calls
+      snaphsots.docs.forEach((QueryDocumentSnapshot element) {
+        _usersAll.add(UserModel.fromDocument(element.data()));
+      });
+      notifyListeners();
     } catch (e) {
       print(e);
     }

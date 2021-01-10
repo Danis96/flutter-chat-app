@@ -3,3 +3,4 @@ const String SignUp = '/registration';
 const String Home = '/home';
 const String Profile = '/profile';
 const String ProfileUpdate = '/profile_update';
+const String Chatroom = '/chatroom';
